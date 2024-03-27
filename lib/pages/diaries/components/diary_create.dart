@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:tutorialpage/models/person_model.dart';
 import 'package:tutorialpage/pages/components/item_picker.dart';
 import 'package:tutorialpage/pages/diaries/components/diary_create_sheet.dart';
 import 'package:tutorialpage/pages/diaries/components/diary_input_adjust.dart';
+import 'package:tutorialpage/service/api_service.dart';
 
 class DiaryCreate extends StatefulWidget {
   const DiaryCreate({super.key});
@@ -14,6 +17,14 @@ class _DiaryCreateState extends State<DiaryCreate> {
   late File imgFile;
   List<File> listImgFile = [];
   final myController = TextEditingController();
+  final LocalStorage storage = LocalStorage('pet_app');
+  late User userInfo;
+  final apiService = ApiService();
+  @override
+  void initState() {
+    userInfo = User.fromJson(storage.getItem("userInfo"));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +39,13 @@ class _DiaryCreateState extends State<DiaryCreate> {
         ),
         actions: [
           InkWell(
-            onTap: () {
-              final data = {
-                "list_img": listImgFile,
-                "status": myController.text,
-              };
-              Navigator.of(context).pop(data);
+            onTap: () async {
+              try {
+                await apiService.postNewFeed(
+                    myController.text, userInfo.id!, listImgFile);
+              } catch (e) {
+                print(e.toString());
+              }
             },
             child: Container(
               margin: const EdgeInsets.only(right: 8, top: 10, bottom: 8),

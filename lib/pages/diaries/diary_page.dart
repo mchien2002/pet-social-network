@@ -16,7 +16,7 @@ class DiaryPage extends StatefulWidget {
 
 class _DiaryPageState extends State<DiaryPage> {
   dynamic newValue;
-  NewsFeedModel? newItem;
+  NewFeed? newItem;
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +56,15 @@ class _DiaryPageState extends State<DiaryPage> {
               onResult: (item) {
                 newValue = item;
                 print("New value: ${newValue}");
-                setState(() {
-                  newItem = NewsFeedModel(
-                    avatar: Asset.avatar,
-                    name: 'Vinh',
-                    time: '1 phút trước',
-                    status: newValue['status'],
-                    imageFile: newValue['list_img'][0],
-                  );
-                });
+                // setState(() {
+                //   newItem = NewsFeedModel(
+                //     avatar: Asset.avatar,
+                //     name: 'Vinh',
+                //     time: '1 phút trước',
+                //     status: newValue['status'],
+                //     imageFile: newValue['list_img'][0],
+                //   );
+                // });
                 print("New item: ${newItem}");
               },
             ),
@@ -72,14 +72,14 @@ class _DiaryPageState extends State<DiaryPage> {
               color: const Color(0xffE5E5E5),
               height: 10,
             ),
-            if (newItem != null)
-              NewsFeedItem(
-                avatar: newItem!.avatar,
-                name: newItem!.name!,
-                time: newItem!.time!,
-                status: newItem!.status!,
-                imgFile: newItem!.imageFile,
-              ),
+            // if (newItem != null)
+            //   NewsFeedItem(
+            //     avatar: newItem!.avatar,
+            //     name: newItem!.name!,
+            //     time: newItem!.time!,
+            //     status: newItem!.status!,
+            //     imgFile: newItem!.imageFile,
+            //   ),
             const NewsFeedList(),
           ],
         ),

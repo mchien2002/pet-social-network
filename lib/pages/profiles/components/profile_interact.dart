@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:tutorialpage/models/person_model.dart';
 
 class ProfileInteract extends StatefulWidget {
   const ProfileInteract({super.key});
@@ -8,6 +10,15 @@ class ProfileInteract extends StatefulWidget {
 }
 
 class _ProfileInteractState extends State<ProfileInteract> {
+  final LocalStorage storage = LocalStorage('pet_app');
+  late User userInfo;
+
+  @override
+  void initState() {
+    userInfo = User.fromJson(storage.getItem("userInfo"));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,17 +26,17 @@ class _ProfileInteractState extends State<ProfileInteract> {
       padding: const EdgeInsets.symmetric(
         vertical: 16,
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Column(
             children: [
-              Text(
+              const Text(
                 'Fans',
                 style: TextStyle(fontSize: 20),
               ),
-              Text('3',
-                  style: TextStyle(
+              Text(userInfo.fanCount.toString(),
+                  style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   )),
@@ -33,12 +44,12 @@ class _ProfileInteractState extends State<ProfileInteract> {
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 'Followed',
                 style: TextStyle(fontSize: 20),
               ),
-              Text('5',
-                  style: TextStyle(
+              Text(userInfo.followerCount.toString(),
+                  style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   )),
@@ -46,12 +57,12 @@ class _ProfileInteractState extends State<ProfileInteract> {
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 'Posts',
                 style: TextStyle(fontSize: 20),
               ),
-              Text('20',
-                  style: TextStyle(
+              Text(userInfo.postCount.toString(),
+                  style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   )),

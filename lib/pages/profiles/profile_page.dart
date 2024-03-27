@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:tutorialpage/models/person_model.dart';
 import 'package:tutorialpage/pages/profiles/components/pop_up_menu.dart';
 import 'package:tutorialpage/pages/profiles/components/profile_interact.dart';
 import 'package:tutorialpage/pages/profiles/components/profile_mypet.dart';
@@ -13,6 +15,22 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final LocalStorage storage = LocalStorage('pet_app');
+  late User userInfo;
+
+  @override
+  void initState() {
+    userInfo = User.fromJson(storage.getItem("userInfo"));
+    super.initState();
+  }
+
+  int getYearOld(String birhdate) {
+    DateTime now = DateTime.now();
+    DateTime birthDate = DateTime.parse(birhdate);
+    int age = now.year - birthDate.year;
+    return age;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,23 +92,23 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     width: 16,
                   ),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Jonny Dang',
-                        style: TextStyle(
+                        userInfo.fullname!,
+                        style: const TextStyle(
                           fontSize: 30,
                         ),
                       ),
                       Row(
                         children: [
-                          ImageIcon(
+                          const ImageIcon(
                             AssetImage('assets/images/sex.png'),
                             color: Color(0xffFC508E),
                           ),
-                          Text('24 tuổi',
-                              style: TextStyle(
+                          Text(getYearOld(userInfo.birthdate!).toString(),
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w300,
                               )),
@@ -98,13 +116,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       Row(
                         children: [
-                          ImageIcon(
+                          const ImageIcon(
                             AssetImage('assets/images/Pin_alt_duotone.png'),
                             color: Color(0xffFC508E),
                           ),
                           Text(
-                            'Hà Nội',
-                            style: TextStyle(
+                            userInfo.address ?? "Việt Nam",
+                            style: const TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 16,
                             ),

@@ -1,4 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:tutorialpage/models/person_model.dart';
+import 'package:tutorialpage/pages/auth/signup_page.dart';
 import 'package:tutorialpage/pages/splashs/splash_page.dart';
 import 'package:tutorialpage/service/api_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,9 +19,16 @@ class _LoginPageState extends State<LoginPage> {
   late TextEditingController _controllerUsername;
   late TextEditingController _controllerPassword;
   final _service = ApiService();
+  final LocalStorage storage = LocalStorage('pet_app');
 
   @override
   void initState() {
+    final userJson = storage.getItem("userInfo");
+    if (userJson != null) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const SplashPage();
+      }));
+    }
     _controllerUsername = TextEditingController();
     _controllerPassword = TextEditingController();
     super.initState();
@@ -26,15 +38,14 @@ class _LoginPageState extends State<LoginPage> {
     try {
       if (_controllerPassword.text.isNotEmpty &&
           _controllerPassword.text.isNotEmpty) {
-        await _service.loginAPI(
+        final userLogin = await _service.loginAPI(
             _controllerUsername.text, _controllerPassword.text);
-        // ignore: use_build_context_synchronously
+        storage.setItem('userInfo', userLogin.toJson());
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const SplashPage();
         }));
       }
     } catch (e) {
-      // ignore: use_build_context_synchronously
       _showAlertDialog(context);
     }
   }
@@ -122,7 +133,10 @@ class _LoginPageState extends State<LoginPage> {
                 WidgetSpan(
                   child: InkWell(
                     onTap: () {
-                      // Xử lý khi bấm vào "Đăng ký"
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const RegisterPage();
+                      }));
                     },
                     child: const Text(
                       'Đăng ký',

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_connect.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_connect.dart';
 
 class ProfileMypet extends StatelessWidget {
   const ProfileMypet({super.key});

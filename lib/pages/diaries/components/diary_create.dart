@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/components/item_picker.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_create_sheet.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_input_adjust.dart';
-import 'package:tutorialpage/service/api_service.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/components/item_picker.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_create_sheet.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_input_adjust.dart';
+import 'package:pet_social_network/service/api_service.dart';
 
 class DiaryCreate extends StatefulWidget {
   const DiaryCreate({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/zoos/components/zoo_each_item.dart';
+import 'package:pet_social_network/pages/zoos/components/zoo_each_item.dart';
 
 class ZooItem extends StatelessWidget {
   final String img;

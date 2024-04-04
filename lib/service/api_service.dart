@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:tutorialpage/models/news_feed_model.dart';
-import 'package:tutorialpage/models/person_model.dart';
+import 'package:pet_social_network/models/news_feed_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
 
 class ApiService {
   final String baseUrl = "http://localhost:8081/api/v1";

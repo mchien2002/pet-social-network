@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/profiles/components/pop_up_menu.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_interact.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_mypet.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/profiles/components/pop_up_menu.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_interact.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_mypet.dart';
 
 import '../components/news_feed_list.dart';
 

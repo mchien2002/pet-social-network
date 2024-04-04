@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:tutorialpage/models/news_feed_model.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/service/api_service.dart';
+import 'package:pet_social_network/models/news_feed_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/service/api_service.dart';
 
 import 'news_feed_item.dart';
 

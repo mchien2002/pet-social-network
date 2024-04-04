@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/adds/add_page.dart';
-import 'package:tutorialpage/pages/notifies/notify_page.dart';
-import 'package:tutorialpage/pages/diaries/diary_page.dart';
-import 'package:tutorialpage/pages/zoos/zoo_page.dart';
+import 'package:pet_social_network/pages/adds/add_page.dart';
+import 'package:pet_social_network/pages/notifies/notify_page.dart';
+import 'package:pet_social_network/pages/diaries/diary_page.dart';
+import 'package:pet_social_network/pages/zoos/zoo_page.dart';
 
 import '../profiles/profile_page.dart';
 

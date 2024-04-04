@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/adds/components/add_info.dart';
-import 'package:tutorialpage/pages/adds/components/add_item.dart';
+import 'package:pet_social_network/pages/adds/components/add_info.dart';
+import 'package:pet_social_network/pages/adds/components/add_item.dart';
 
 class AddList extends StatelessWidget {
   const AddList({super.key});

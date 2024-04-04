@@ -1,6 +1,6 @@
 {
-    "name": "tutorialpage",
-    "short_name": "tutorialpage",
+    "name": "pet_social_network",
+    "short_name": "pet_social_network",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

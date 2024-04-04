@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:tutorialpage/pages/zoos/components/zoo_item.dart';
+import 'package:pet_social_network/pages/zoos/components/zoo_item.dart';
 
 class ZooList extends StatefulWidget {
   const ZooList({super.key});

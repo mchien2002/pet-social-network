@@ -1,5 +1,5 @@
-import 'package:tutorialpage/models/comment_model.dart';
-import 'package:tutorialpage/models/person_model.dart';
+import 'package:pet_social_network/models/comment_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
 
 class NewFeed {
   String? id;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_adjust_item.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_adjust_item.dart';
 
 import '../../../common/const.dart';
 

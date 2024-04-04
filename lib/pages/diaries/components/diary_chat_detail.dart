@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reaction_button/flutter_reaction_button.dart';
-import 'package:tutorialpage/models/message.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_bottom.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_otext.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_text.dart';
+import 'package:pet_social_network/models/message.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_bottom.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_otext.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_text.dart';
 
 class DiaryChatDetail extends StatefulWidget {
   PersonModel person;

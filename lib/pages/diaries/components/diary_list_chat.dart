@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_circle.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_detail.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_circle.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_detail.dart';
 
 class DiaryListChat extends StatefulWidget {
   DiaryListChat({super.key, required this.listPeople});

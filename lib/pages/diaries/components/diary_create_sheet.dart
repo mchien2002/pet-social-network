@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_sheet_item.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_sheet_item.dart';
 
 class DiaryCreateSheet extends StatefulWidget {
   const DiaryCreateSheet({super.key, required this.onResult});

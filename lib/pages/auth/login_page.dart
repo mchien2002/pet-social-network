@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/auth/signup_page.dart';
-import 'package:tutorialpage/pages/splashs/splash_page.dart';
-import 'package:tutorialpage/service/api_service.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/auth/signup_page.dart';
+import 'package:pet_social_network/pages/splashs/splash_page.dart';
+import 'package:pet_social_network/service/api_service.dart';
 import 'package:flutter/cupertino.dart';
 
 class LoginPage extends StatefulWidget {

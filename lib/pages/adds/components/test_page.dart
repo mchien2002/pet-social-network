@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_otext.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_otext.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({super.key});

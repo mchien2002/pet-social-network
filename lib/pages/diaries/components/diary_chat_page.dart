@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_chat_onl.dart';
-import 'package:tutorialpage/pages/diaries/components/diary_list_chat.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_chat_onl.dart';
+import 'package:pet_social_network/pages/diaries/components/diary_list_chat.dart';
 import '../../../models/person_model.dart';
 
 class DiaryChatPage extends StatefulWidget {

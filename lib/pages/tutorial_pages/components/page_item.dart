@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/homes/home_page.dart';
+import 'package:pet_social_network/pages/homes/home_page.dart';
 
 // ignore: must_be_immutable
 class PageItem extends StatefulWidget {

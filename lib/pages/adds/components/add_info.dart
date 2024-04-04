@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/adds/components/add_info_pet.dart';
-import 'package:tutorialpage/pages/adds/components/add_info_user.dart';
+import 'package:pet_social_network/pages/adds/components/add_info_pet.dart';
+import 'package:pet_social_network/pages/adds/components/add_info_user.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 import '../../../common/const.dart';

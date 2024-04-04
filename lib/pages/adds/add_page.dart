@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/adds/components/add_list.dart';
+import 'package:pet_social_network/pages/adds/components/add_list.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});

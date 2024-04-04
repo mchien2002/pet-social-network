@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tutorialpage/pages/adds/components/test_page.dart';
-import 'package:tutorialpage/pages/adds/components/text_field_date.dart';
-import 'package:tutorialpage/pages/components/img_circular_icon.dart';
-import 'package:tutorialpage/pages/components/text_field_select.dart';
+import 'package:pet_social_network/pages/adds/components/test_page.dart';
+import 'package:pet_social_network/pages/adds/components/text_field_date.dart';
+import 'package:pet_social_network/pages/components/img_circular_icon.dart';
+import 'package:pet_social_network/pages/components/text_field_select.dart';
 
 import '../../components/item_picker.dart';
 

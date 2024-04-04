@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_gift.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_gift.dart';
 
 import '../../../common/const.dart';
 

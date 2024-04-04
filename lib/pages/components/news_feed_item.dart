@@ -1,9 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:tutorialpage/constanst.dart';
-import 'package:tutorialpage/models/comment_model.dart';
+import 'package:pet_social_network/constanst.dart';
+import 'package:pet_social_network/models/comment_model.dart';
 import '../diaries/components/diary_interact.dart';
 
 class NewsFeedItem extends StatefulWidget {

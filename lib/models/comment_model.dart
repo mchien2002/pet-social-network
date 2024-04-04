@@ -1,4 +1,4 @@
-import 'package:tutorialpage/models/person_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
 
 class Comments {
   String? id;

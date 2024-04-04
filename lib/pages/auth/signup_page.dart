@@ -3,10 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tutorialpage/constanst.dart';
-import 'package:tutorialpage/models/person_model.dart';
-import 'package:tutorialpage/pages/auth/login_page.dart';
-import 'package:tutorialpage/service/api_service.dart';
+import 'package:pet_social_network/constanst.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/pages/auth/login_page.dart';
+import 'package:pet_social_network/service/api_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

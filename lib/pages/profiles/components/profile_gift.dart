@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/profiles/components/pop_up_menu.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_gift_item.dart';
-import 'package:tutorialpage/pages/profiles/components/profile_gift_list.dart';
+import 'package:pet_social_network/pages/profiles/components/pop_up_menu.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_gift_item.dart';
+import 'package:pet_social_network/pages/profiles/components/profile_gift_list.dart';
 
 class ProfileGift extends StatefulWidget {
   const ProfileGift({super.key});

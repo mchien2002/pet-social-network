@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/common/const.dart';
-import 'package:tutorialpage/pages/tutorial_pages/components/page_item.dart';
+import 'package:pet_social_network/common/const.dart';
+import 'package:pet_social_network/pages/tutorial_pages/components/page_item.dart';
 
 class ViewPage extends StatefulWidget {
   const ViewPage({super.key});

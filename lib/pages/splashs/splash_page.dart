@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/tutorial_pages/view_page.dart';
+import 'package:pet_social_network/pages/tutorial_pages/view_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutorialpage/pages/zoos/components/zoo_appbar.dart';
+import 'package:pet_social_network/pages/zoos/components/zoo_appbar.dart';
 
 import 'components/zoo_item.dart';
 import 'components/zoo_list.dart';

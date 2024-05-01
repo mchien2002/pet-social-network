@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:pet_social_network/constanst.dart';
 import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/pages/profiles/components/pop_up_menu.dart';
 import 'package:pet_social_network/pages/profiles/components/profile_interact.dart';
@@ -68,9 +69,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       clipBehavior: Clip.none,
                       fit: StackFit.expand,
                       children: [
-                        const CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/avatar3.png'),
+                        Expanded(
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                '$BASE_URL_IMAGE/icons/${userInfo.avatar}'),
+                          ),
                         ),
                         Positioned(
                           bottom: -4,
@@ -134,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(
                     width: 22,
                   ),
-                  Image.asset('assets/images/badge.png'),
+                  Expanded(child: Image.asset('assets/images/badge.png')),
                 ],
               ),
             ),

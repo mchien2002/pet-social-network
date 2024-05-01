@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:pet_social_network/models/news_feed_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/pages/zoos/components/zoo_appbar.dart';
+import 'package:pet_social_network/service/api_service.dart';
 
 import 'components/zoo_item.dart';
 import 'components/zoo_list.dart';
@@ -12,24 +16,34 @@ class ZooPage extends StatefulWidget {
 }
 
 class _ZooPageState extends State<ZooPage> {
-  List<ZooItem> gridZoo = [
-    const ZooItem(
-        img: 'assets/images/person2.png',
-        txt: 'Misa iu thía ^^',
-        name: 'Trần Trà My'),
-    const ZooItem(
-        img: 'assets/images/person1.png',
-        txt: 'Misa iu thía ^^',
-        name: 'Trần Trà My'),
-    const ZooItem(
-        img: 'assets/images/person2.png',
-        txt: 'Misa iu thía ^^',
-        name: 'Trần Trà My'),
-    const ZooItem(
-        img: 'assets/images/person1.png',
-        txt: 'Misa iu thía ^^',
-        name: 'Trần Trà My'),
-  ];
+  List<ZooItem> gridZoo = [];
+  final apiService = ApiService();
+  final User userInfo =
+      User.fromJson(LocalStorage('pet_app').getItem("userInfo"));
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNewFeeds();
+  }
+
+  Future<void> fetchNewFeeds() async {
+    List<NewFeed> newFeeds = await apiService.getOwnPost(userInfo.id!);
+    setState(() {
+      gridZoo = newFeeds
+          .where((newFeed) => newFeed.attachFiles!.isNotEmpty)
+          .map((newFeed) => ZooItem(
+                img: newFeed.attachFiles![0],
+                txt: newFeed.title ?? '--',
+                name: newFeed.owner?.fullname ?? "--",
+                avatar: newFeed.owner?.avatar ?? "--",
+              ))
+          .cast<ZooItem>()
+          .toList();
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

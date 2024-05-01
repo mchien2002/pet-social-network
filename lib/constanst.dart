@@ -52,4 +52,4 @@ extension PetTypeExtension on PetType {
 }
 
 const BASE_URL_IMAGE =
-    'https://lanha-bucket-dev.s3.ap-southeast-1.amazonaws.com/petsocials/uploads/images';
+    'https://lanha-bucket-dev.s3.ap-southeast-1.amazonaws.com/petsocials/uploads';

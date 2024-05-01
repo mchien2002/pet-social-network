@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:pet_social_network/constanst.dart';
+import 'package:pet_social_network/models/person_model.dart';
 import 'diary_create.dart';
 
 class DiaryInput extends StatefulWidget {
@@ -11,6 +14,8 @@ class DiaryInput extends StatefulWidget {
 
 class _DiaryInputState extends State<DiaryInput> {
   dynamic item;
+  final User userInfo =
+      User.fromJson(LocalStorage('pet_app').getItem("userInfo"));
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,8 +30,9 @@ class _DiaryInputState extends State<DiaryInput> {
           ),
           child: Row(
             children: <Widget>[
-              const CircleAvatar(
-                backgroundImage: AssetImage('assets/images/avatar1.png'),
+              CircleAvatar(
+                backgroundImage:
+                    NetworkImage('$BASE_URL_IMAGE/icons/${userInfo.avatar}'),
               ),
               Expanded(
                 child: Padding(

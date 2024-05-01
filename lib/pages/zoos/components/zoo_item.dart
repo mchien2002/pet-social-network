@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pet_social_network/constanst.dart';
 import 'package:pet_social_network/pages/zoos/components/zoo_each_item.dart';
 
 class ZooItem extends StatelessWidget {
   final String img;
   final String txt;
   final String name;
+  final String avatar;
   const ZooItem(
-      {super.key, required this.img, required this.txt, required this.name});
+      {super.key,
+      required this.img,
+      required this.txt,
+      required this.name,
+      required this.avatar});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +35,11 @@ class ZooItem extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
-            Image.asset(
-              img,
-              fit: BoxFit.cover,
+            Expanded(
+              child: Image.network(
+                '$BASE_URL_IMAGE/images/$img',
+                fit: BoxFit.cover,
+              ),
             ),
             Container(
                 decoration: const BoxDecoration(
@@ -42,12 +50,15 @@ class ZooItem extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          margin: const EdgeInsets.only(left: 6),
-                          child: Text(
-                            txt,
-                            style: const TextStyle(
-                              fontSize: 15,
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 6),
+                            child: Text(
+                              txt,
+                              style: const TextStyle(
+                                fontSize: 15,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
                         ),
@@ -57,11 +68,11 @@ class ZooItem extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 6),
                       child: Row(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             width: 28,
                             child: CircleAvatar(
                               backgroundImage:
-                                  AssetImage('assets/images/avatar1.png'),
+                                  NetworkImage('$BASE_URL_IMAGE/icons/$avatar'),
                             ),
                           ),
                           const SizedBox(

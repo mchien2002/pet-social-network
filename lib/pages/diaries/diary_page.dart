@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_social_network/models/news_feed_model.dart';
-import 'package:pet_social_network/pages/components/news_feed_item.dart';
 import 'package:pet_social_network/pages/diaries/components/diary_chat_page.dart';
-import 'package:pet_social_network/pages/diaries/components/diary_dialog.dart';
-import '../../common/const.dart';
 import 'components/diary_input.dart';
 import '../components/news_feed_list.dart';
 

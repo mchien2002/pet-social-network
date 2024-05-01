@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       if (_controllerPassword.text.isNotEmpty &&
           _controllerPassword.text.isNotEmpty) {
         final userLogin = await _service.loginAPI(
-            _controllerUsername.text, _controllerPassword.text);
+            "minhchien2002","mchien2002");
         storage.setItem('userInfo', userLogin.toJson());
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const SplashPage();

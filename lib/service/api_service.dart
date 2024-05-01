@@ -5,7 +5,7 @@ import 'package:pet_social_network/models/news_feed_model.dart';
 import 'package:pet_social_network/models/person_model.dart';
 
 class ApiService {
-  final String baseUrl = "http://localhost:8081/api/v1";
+  final String baseUrl = "http://52.74.135.27:8081/api/v1";
   Future<User> loginAPI(String username, String password) async {
     final response = await http.post(Uri.parse('$baseUrl/user/signin'),
         body: {"username": username, "password": password});

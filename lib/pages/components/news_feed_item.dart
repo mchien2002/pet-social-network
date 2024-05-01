@@ -32,7 +32,7 @@ class NewsFeedItem extends StatefulWidget {
 
 class _NewsFeedItemState extends State<NewsFeedItem> {
   String getUrlImage(String filename) {
-    return "$BASE_URL_IMAGE/$filename";
+    return "$BASE_URL_IMAGE/images/$filename";
   }
 
   @override
@@ -56,7 +56,8 @@ class _NewsFeedItemState extends State<NewsFeedItem> {
               children: [
                 const SizedBox(width: 8),
                 CircleAvatar(
-                  backgroundImage: AssetImage(widget.avatar),
+                  backgroundImage:
+                      NetworkImage('$BASE_URL_IMAGE/icons/${widget.avatar}'),
                 ),
                 const SizedBox(width: 10),
                 Column(

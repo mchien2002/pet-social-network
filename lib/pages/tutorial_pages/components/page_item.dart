@@ -37,12 +37,14 @@ class _PageItemState extends State<PageItem> {
               fontWeight: FontWeight.bold,
             ),
           ),
-        Text(
-          widget.text!,
-          style: const TextStyle(
-            fontSize: 18.0,
+        Expanded(
+          child: Text(
+            widget.text!,
+            style: const TextStyle(
+              fontSize: 18.0,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 48,

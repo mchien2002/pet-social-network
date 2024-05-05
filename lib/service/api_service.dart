@@ -45,7 +45,7 @@ class ApiService {
     }
   }
 
-  Future<NewFeed> postNewFeed(
+  Future<NewFeedResponse> postNewFeed(
       String title, String ownerId, List<File> listImgFile) async {
     var request = http.MultipartRequest('POST', Uri.parse('$baseUrl/post'));
     request.fields['title'] = title;
@@ -55,8 +55,19 @@ class ApiService {
       request.files.add(await http.MultipartFile.fromPath('img', file.path));
     }
     var streamedResponse = await request.send();
-    if (streamedResponse.statusCode == 200) {
+    if (streamedResponse.statusCode == 201) {
       var response = await http.Response.fromStream(streamedResponse);
+      final responseData = json.decode(response.body);
+      return NewFeedResponse.fromJson(responseData["data"]);
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  Future<NewFeed> likePost(String ownerId, String postId) async {
+    final response = await http.post(Uri.parse('$baseUrl/post/like'),
+        body: {"userId": ownerId, "postId": postId});
+    if (response.statusCode == 201) {
       final responseData = json.decode(response.body);
       return NewFeed.fromJson(responseData["data"]);
     } else {

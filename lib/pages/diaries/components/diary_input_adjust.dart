@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:pet_social_network/constanst.dart';
+import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/pages/diaries/components/diary_adjust_item.dart';
 
 import '../../../common/const.dart';
@@ -11,6 +14,8 @@ class DiaryInputAdjust extends StatefulWidget {
 }
 
 class _DiaryInputAdjustState extends State<DiaryInputAdjust> {
+  final User userInfo =
+      User.fromJson(LocalStorage('pet_app').getItem("userInfo"));
   List<DiaryAdjustItem> listadjust = [
     const DiaryAdjustItem(icon1: Icon(Icons.lock), text: 'Chỉ mình tôi'),
     const DiaryAdjustItem(icon1: Icon(Icons.lock), text: 'Chỉ mình tôi'),
@@ -25,23 +30,24 @@ class _DiaryInputAdjustState extends State<DiaryInputAdjust> {
           width: 8,
         ),
         CircleAvatar(
-          backgroundImage: AssetImage(Asset.avatar),
+          backgroundImage:
+              NetworkImage('$BASE_URL_IMAGE/icons/${userInfo.avatar}'),
           minRadius: 24,
         ),
         const SizedBox(
           width: 10,
         ),
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Vinh Nguyen',
-              style: TextStyle(
+              userInfo.fullname ?? "--",
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 DiaryAdjustItem(

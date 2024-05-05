@@ -27,10 +27,11 @@ class NewFeed {
     id = json['_id'];
     title = json['title'];
     owner = json['owner'] != null ? User.fromJson(json['owner']) : null;
-    attachFiles = json['attachFiles'].cast<String>();
+    attachFiles =
+        json['attachFiles'] != null ? json['attachFiles'].cast<String>() : [];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    likeCount = json['likeCount'];
+    likeCount = json['likeCount'] ?? 0;
     shareCount = json['shareCount'];
     if (json['comments'] != null) {
       comments = <Comments>[];
@@ -47,6 +48,63 @@ class NewFeed {
     if (owner != null) {
       data['owner'] = owner!.toJson();
     }
+    data['attachFiles'] = attachFiles;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['likeCount'] = likeCount;
+    data['shareCount'] = shareCount;
+    if (comments != null) {
+      data['comments'] = comments!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class NewFeedResponse {
+  String? id;
+  String? title;
+  String? owner;
+  List<String>? attachFiles;
+  String? createdAt;
+  String? updatedAt;
+  int? likeCount;
+  int? shareCount;
+  List<Comments>? comments;
+
+  NewFeedResponse(
+      {this.id,
+      this.title,
+      this.owner,
+      this.attachFiles,
+      this.createdAt,
+      this.updatedAt,
+      this.likeCount,
+      this.shareCount,
+      this.comments});
+
+  NewFeedResponse.fromJson(Map<String, dynamic> json) {
+    id = json['_id'];
+    title = json['title'];
+    owner = json['owner'];
+    attachFiles =
+        json['attachFiles'] != null ? json['attachFiles'].cast<String>() : [];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    likeCount = json['likeCount'];
+    shareCount = json['shareCount'];
+    if (json['comments'] != null) {
+      comments = <Comments>[];
+      json['comments'].forEach((v) {
+        comments!.add(Comments.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = id;
+    data['title'] = title;
+    data['owner'] = owner;
     data['attachFiles'] = attachFiles;
     data['createdAt'] = createdAt;
     data['updatedAt'] = updatedAt;

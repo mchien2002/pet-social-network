@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:pet_social_network/models/news_feed_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/pages/diaries/components/diary_chat_page.dart';
+import 'package:pet_social_network/service/api_service.dart';
 import 'components/diary_input.dart';
 import '../components/news_feed_list.dart';
 
@@ -15,8 +18,36 @@ class _DiaryPageState extends State<DiaryPage> {
   dynamic newValue;
   NewFeed? newItem;
 
+  Future<void> refreshPage() async {
+    fetchNewFeeds();
+  }
+
+  final LocalStorage storage = LocalStorage('pet_app');
+  List<NewFeed> listNewFeeds = [];
+  final apiService = ApiService();
+  late User userInfo;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchNewFeeds();
+  }
+
+  Future<void> fetchNewFeeds() async {
+    userInfo = User.fromJson(storage.getItem("userInfo"));
+    List<NewFeed> newFeeds = await apiService.getOwnPost(userInfo.id!);
+    setState(() {
+      listNewFeeds = newFeeds;
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -45,40 +76,29 @@ class _DiaryPageState extends State<DiaryPage> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DiaryInput(
-              onResult: (item) {
-                newValue = item;
-                print("New value: ${newValue}");
-                // setState(() {
-                //   newItem = NewsFeedModel(
-                //     avatar: Asset.avatar,
-                //     name: 'Vinh',
-                //     time: '1 phút trước',
-                //     status: newValue['status'],
-                //     imageFile: newValue['list_img'][0],
-                //   );
-                // });
-                print("New item: ${newItem}");
-              },
-            ),
-            Container(
-              color: const Color(0xffE5E5E5),
-              height: 10,
-            ),
-            // if (newItem != null)
-            //   NewsFeedItem(
-            //     avatar: newItem!.avatar,
-            //     name: newItem!.name!,
-            //     time: newItem!.time!,
-            //     status: newItem!.status!,
-            //     imgFile: newItem!.imageFile,
-            //   ),
-            const NewsFeedList(),
-          ],
+      body: RefreshIndicator(
+        onRefresh: () => refreshPage(),
+        child: SingleChildScrollView(
+          physics:
+              const AlwaysScrollableScrollPhysics(), // Bỏ qua giới hạn để làm mới
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DiaryInput(
+                onResult: (item) {
+                  newValue = item;
+                  print("New value: ${newValue}");
+                },
+              ),
+              Container(
+                color: const Color(0xffE5E5E5),
+                height: 10,
+              ),
+              NewsFeedList(
+                listNewFeed: listNewFeeds,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -5,6 +7,7 @@ import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/pages/components/item_picker.dart';
 import 'package:pet_social_network/pages/diaries/components/diary_create_sheet.dart';
 import 'package:pet_social_network/pages/diaries/components/diary_input_adjust.dart';
+import 'package:pet_social_network/pages/homes/home_page.dart';
 import 'package:pet_social_network/service/api_service.dart';
 
 class DiaryCreate extends StatefulWidget {
@@ -43,6 +46,10 @@ class _DiaryCreateState extends State<DiaryCreate> {
               try {
                 await apiService.postNewFeed(
                     myController.text, userInfo.id!, listImgFile);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomePage()),
+                );
               } catch (e) {
                 print(e.toString());
               }

@@ -34,10 +34,7 @@ class _ZooPageState extends State<ZooPage> {
       gridZoo = newFeeds
           .where((newFeed) => newFeed.attachFiles!.isNotEmpty)
           .map((newFeed) => ZooItem(
-                img: newFeed.attachFiles![0],
-                txt: newFeed.title ?? '--',
-                name: newFeed.owner?.fullname ?? "--",
-                avatar: newFeed.owner?.avatar ?? "--",
+                newFeed: newFeed,
               ))
           .cast<ZooItem>()
           .toList();

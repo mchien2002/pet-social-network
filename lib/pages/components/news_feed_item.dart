@@ -5,6 +5,7 @@ import 'package:pet_social_network/models/comment_model.dart';
 import '../diaries/components/diary_interact.dart';
 
 class NewsFeedItem extends StatefulWidget {
+  final String id;
   final String avatar;
   final String name;
   final String time;
@@ -23,7 +24,7 @@ class NewsFeedItem extends StatefulWidget {
     required this.shareCount,
     required this.status,
     this.imageUrls,
-    this.comments,
+    this.comments, required this.id,
   }) : super(key: key);
 
   @override
@@ -33,6 +34,21 @@ class NewsFeedItem extends StatefulWidget {
 class _NewsFeedItemState extends State<NewsFeedItem> {
   String getUrlImage(String filename) {
     return "$BASE_URL_IMAGE/images/$filename";
+  }
+
+  String calculateTimeDifference(String inputTime) {
+    DateTime postTime = DateTime.parse(inputTime);
+    DateTime now = DateTime.now();
+    Duration difference = now.difference(postTime);
+    if (difference.inDays > 0) {
+      return '${difference.inDays} ngày trước';
+    } else if (difference.inHours > 0) {
+      return '${difference.inHours} giờ trước';
+    } else if (difference.inMinutes > 0) {
+      return '${difference.inMinutes} phút trước';
+    } else {
+      return 'Vừa đăng';
+    }
   }
 
   @override
@@ -65,7 +81,7 @@ class _NewsFeedItemState extends State<NewsFeedItem> {
                   children: [
                     Text(widget.name),
                     Text(
-                      widget.time,
+                      calculateTimeDifference(widget.time),
                       style: const TextStyle(color: Color(0xff707070)),
                     ),
                   ],
@@ -88,6 +104,7 @@ class _NewsFeedItemState extends State<NewsFeedItem> {
               likeCount: widget.likeCount,
               shareCount: widget.shareCount,
               commentCount: widget.comments!.length,
+              postId: widget.id,
             ),
             const SizedBox(height: 10),
           ],

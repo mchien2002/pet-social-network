@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:pet_social_network/models/comment_model.dart';
 import 'package:pet_social_network/models/news_feed_model.dart';
 import 'package:pet_social_network/models/person_model.dart';
 
@@ -79,6 +80,19 @@ class ApiService {
     final response = await http.post(Uri.parse('$baseUrl/follow'),
         body: {"userId": userId, "followerId": peopleFollowId});
     if (response.statusCode == 201) {
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  Future<Comments> commentPost(
+      String ownerId, String postId, String content) async {
+    final response = await http.post(Uri.parse('$baseUrl/comment'),
+        body: {"peopleComment": ownerId, "post": postId, "content": content});
+    if (response.statusCode == 201) {
+      final responseData = json.decode(response.body);
+      print(responseData);
+      return Comments.fromJson(responseData["data"]);
     } else {
       throw Exception('Failed to load data');
     }

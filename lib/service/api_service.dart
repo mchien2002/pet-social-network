@@ -74,4 +74,13 @@ class ApiService {
       throw Exception('Failed to load data');
     }
   }
+
+  Future<void> followUser(String userId, String peopleFollowId) async {
+    final response = await http.post(Uri.parse('$baseUrl/follow'),
+        body: {"userId": userId, "followerId": peopleFollowId});
+    if (response.statusCode == 201) {
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 }

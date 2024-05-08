@@ -29,11 +29,14 @@ class _ProfilePageState extends State<ProfilePage> {
     List<NewFeed> newFeeds = await apiService.getOwnPost(userInfo.id!);
     setState(() {
       listNewFeeds = newFeeds;
-    });  }
+    });
+  }
 
   Future<void> refreshPage() async {
+    setState(() {
+      userInfo = User.fromJson(storage.getItem("userInfo"));
+    });
     fetchNewFeeds();
-    super.initState();
   }
 
   @override
@@ -161,7 +164,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              const ProfileInteract(),
+              ProfileInteract(
+                userInfo: userInfo,
+              ),
               const ProfileMypet(),
               NewsFeedList(
                 listNewFeed: listNewFeeds,

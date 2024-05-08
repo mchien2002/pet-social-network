@@ -65,8 +65,8 @@ class User {
   String? fullname;
   String? avatar;
   int? petType;
-  int? followerCount;
-  int? fanCount;
+  List<String>? followers;
+  List<String>? fans;
   int? postCount;
   String? address;
   String? birthdate;
@@ -81,8 +81,8 @@ class User {
       this.fullname,
       this.avatar,
       this.petType,
-      this.fanCount,
-      this.followerCount,
+      this.fans,
+      this.followers,
       this.postCount,
       this.birthdate,
       this.phone,
@@ -97,8 +97,8 @@ class User {
     avatar = json['avatar'];
     petType = json['petType'];
     postCount = json['postCount'];
-    followerCount = json['followerCount'];
-    fanCount = json['fanCount'];
+    followers = json['followers'] != null ? json['followers'].cast<String>() :[];
+    fans = json['fans'] != null ? json['fans'].cast<String>() :[];
     address = json['address'];
     birthdate = json['birthdate'];
     phone = json['phone'];
@@ -115,8 +115,8 @@ class User {
     data['avatar'] = avatar;
     data['petType'] = petType;
     data['postCount'] = postCount;
-    data['followerCount'] = followerCount;
-    data['fanCount'] = fanCount;
+    data['followers'] = followers;
+    data['fans'] = fans;
     data['address'] = address;
     data['birthdate'] = birthdate;
     data['phone'] = phone;

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:pet_social_network/constanst.dart';
 import 'package:pet_social_network/models/news_feed_model.dart';
+import 'package:pet_social_network/models/person_model.dart';
+import 'package:pet_social_network/service/api_service.dart';
 
 class ZooEachItem extends StatefulWidget {
   final NewFeed item;
@@ -12,6 +15,10 @@ class ZooEachItem extends StatefulWidget {
 }
 
 class _ZooEachItemState extends State<ZooEachItem> {
+  final apiService = ApiService();
+  late bool followed = false;
+  final User userInfo =
+      User.fromJson(LocalStorage('pet_app').getItem("userInfo"));
   String getUrlImage(String filename) {
     return "$BASE_URL_IMAGE/images/$filename";
   }
@@ -29,6 +36,24 @@ class _ZooEachItemState extends State<ZooEachItem> {
     } else {
       return 'Vừa đăng';
     }
+  }
+
+  @override
+  void initState() {
+    if (userInfo.followers!.contains(widget.item.owner!.id)) {
+      setState(() {
+        followed = true;
+      });
+    }
+    super.initState();
+  }
+
+  Future<void> likePost() async {
+    final newFeedLiked =
+        await apiService.likePost(userInfo.id!, widget.item.id.toString());
+    setState(() {
+      widget.item.likeCount = newFeedLiked.likeCount ?? 0;
+    });
   }
 
   @override
@@ -107,19 +132,37 @@ class _ZooEachItemState extends State<ZooEachItem> {
                 Container(
                   margin: const EdgeInsets.only(right: 16),
                   height: 36,
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: const Color(0xff4890FB),
-                      ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Theo dõi',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      )),
+                  child: widget.item.owner!.id != userInfo.id
+                      ? TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color(0xff4890FB),
+                          ),
+                          onPressed: () async {
+                            if (followed == false) {
+                              await apiService.followUser(userInfo.id ?? "",
+                                  widget.item.owner!.id ?? "");
+                              setState(() {
+                                followed = true;
+                                if (userInfo.followers!
+                                        .contains(widget.item.owner!.id) ==
+                                    false) {
+                                  userInfo.followers!
+                                      .add(widget.item.owner!.id ?? "");
+                                  LocalStorage('pet_app')
+                                      .setItem('userInfo', userInfo.toJson());
+                                }
+                              });
+                            }
+                          },
+                          child: Text(
+                            followed == false ? 'Theo dõi' : 'Đã theo dõi',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ))
+                      : const SizedBox(),
                 ),
               ],
             ),
@@ -143,12 +186,15 @@ class _ZooEachItemState extends State<ZooEachItem> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(
-                  Icons.favorite_sharp,
-                  color: widget.item.likeCount == 0
-                      ? const Color(0xff707070)
-                      : const Color(0xFFFF3040),
-                  size: 30,
+                InkWell(
+                  onTap: () => likePost(),
+                  child: Icon(
+                    Icons.favorite_sharp,
+                    color: widget.item.likeCount == 0
+                        ? const Color(0xff707070)
+                        : const Color(0xFFFF3040),
+                    size: 30,
+                  ),
                 ),
                 Text(widget.item.likeCount.toString()),
                 const ImageIcon(

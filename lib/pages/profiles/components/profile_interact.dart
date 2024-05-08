@@ -3,19 +3,17 @@ import 'package:localstorage/localstorage.dart';
 import 'package:pet_social_network/models/person_model.dart';
 
 class ProfileInteract extends StatefulWidget {
-  const ProfileInteract({super.key});
+  final User userInfo;
+  const ProfileInteract({super.key, required this.userInfo});
 
   @override
   State<ProfileInteract> createState() => _ProfileInteractState();
 }
 
 class _ProfileInteractState extends State<ProfileInteract> {
-  final LocalStorage storage = LocalStorage('pet_app');
-  late User userInfo;
 
   @override
   void initState() {
-    userInfo = User.fromJson(storage.getItem("userInfo"));
     super.initState();
   }
 
@@ -35,7 +33,7 @@ class _ProfileInteractState extends State<ProfileInteract> {
                 'Fans',
                 style: TextStyle(fontSize: 20),
               ),
-              Text(userInfo.fanCount.toString(),
+              Text(widget.userInfo.fans!.length.toString(),
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -48,7 +46,7 @@ class _ProfileInteractState extends State<ProfileInteract> {
                 'Followed',
                 style: TextStyle(fontSize: 20),
               ),
-              Text(userInfo.followerCount.toString(),
+              Text(widget.userInfo.followers!.length.toString(),
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -61,7 +59,7 @@ class _ProfileInteractState extends State<ProfileInteract> {
                 'Posts',
                 style: TextStyle(fontSize: 20),
               ),
-              Text(userInfo.postCount.toString(),
+              Text(widget.userInfo.postCount.toString(),
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,

@@ -90,171 +90,173 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Center(
-            child: Text(
-              "Đăng Ký",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: TextField(
-              controller: _controllerFullname,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Họ và tên',
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Center(
+              child: Text(
+                "Đăng Ký",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: TextField(
-              controller: _controllerUsername,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Tên đăng nhập',
-              ),
+            const SizedBox(
+              height: 20,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Sinh nhật",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: TextField(
+                controller: _controllerFullname,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Họ và tên',
                 ),
-                CupertinoButton(
-                  onPressed: () => _showDialog(
-                    CupertinoDatePicker(
-                      initialDateTime: date,
-                      mode: CupertinoDatePickerMode.date,
-                      use24hFormat: true,
-                      // This shows day of week alongside day of month
-                      showDayOfWeek: true,
-                      // This is called when the user changes the date.
-                      onDateTimeChanged: (DateTime newDate) {
-                        setState(() => date = newDate);
-                      },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: TextField(
+                controller: _controllerUsername,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Tên đăng nhập',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Sinh nhật",
+                    style: TextStyle(
+                      fontSize: 16,
                     ),
                   ),
-                  child: Text(
-                    '${date.month}-${date.day}-${date.year}',
-                    style: const TextStyle(
-                      fontSize: 22.0,
+                  CupertinoButton(
+                    onPressed: () => _showDialog(
+                      CupertinoDatePicker(
+                        initialDateTime: date,
+                        mode: CupertinoDatePickerMode.date,
+                        use24hFormat: true,
+                        // This shows day of week alongside day of month
+                        showDayOfWeek: true,
+                        // This is called when the user changes the date.
+                        onDateTimeChanged: (DateTime newDate) {
+                          setState(() => date = newDate);
+                        },
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Thú cưng của bản là gì",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                DropdownButton<PetType>(
-                  value: _selectedPetType,
-                  items: PetType.values.map((petType) {
-                    return DropdownMenuItem<PetType>(
-                      value: petType,
-                      child: Text(petType.name),
-                    );
-                  }).toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      _selectedPetType = newValue!;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: TextField(
-              controller: _controllerPassword,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Nhập mật khẩu',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: TextField(
-              controller: _controllerReconfirmPassword,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Nhập lại mật khẩu',
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-            child: ElevatedButton(
-              onPressed: () => signupUser(),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                minimumSize: Size(MediaQuery.of(context).size.width, 50.0),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-                child: Text('Đăng ký'),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          RichText(
-            text: TextSpan(
-              text: 'Đã có tài khoản? ',
-              style: const TextStyle(fontSize: 15),
-              children: [
-                WidgetSpan(
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const LoginPage();
-                      }));
-                    },
-                    child: const Text(
-                      'Đăng nhập',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    child: Text(
+                      '${date.month}-${date.day}-${date.year}',
+                      style: const TextStyle(
+                        fontSize: 22.0,
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Thú cưng của bản là gì",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  DropdownButton<PetType>(
+                    value: _selectedPetType,
+                    items: PetType.values.map((petType) {
+                      return DropdownMenuItem<PetType>(
+                        value: petType,
+                        child: Text(petType.name),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedPetType = newValue!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: TextField(
+                controller: _controllerPassword,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Nhập mật khẩu',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: TextField(
+                controller: _controllerReconfirmPassword,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Nhập lại mật khẩu',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+              child: ElevatedButton(
+                onPressed: () => signupUser(),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  minimumSize: Size(MediaQuery.of(context).size.width, 50.0),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                  child: Text('Đăng ký'),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            RichText(
+              text: TextSpan(
+                text: 'Đã có tài khoản? ',
+                style: const TextStyle(fontSize: 15),
+                children: [
+                  WidgetSpan(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return const LoginPage();
+                            }));
+                      },
+                      child: const Text(
+                        'Đăng nhập',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -4,19 +4,35 @@ import 'package:pet_social_network/models/news_feed_model.dart';
 import 'package:pet_social_network/models/person_model.dart';
 import 'package:pet_social_network/service/api_service.dart';
 
+import '../../../models/comment_model.dart';
+import 'comment_page.dart';
+
 class DiaryInteract extends StatefulWidget {
   final String postId;
+  final String avatar;
+  final String name;
+  final String status;
   final int likeCount;
+  final String time;
+  final List<Comments>? comments;
   final int shareCount;
   final int commentCount;
+  final List<String>? imageUrls;
 
   DiaryInteract({
     Key? key,
+    required this.avatar,
     required this.likeCount,
+    required this.name,
     required this.shareCount,
+    required this.status,
+    required this.time,
+    required this.comments,
     required this.commentCount,
     required this.postId,
+    this.imageUrls
   }) : super(key: key);
+
 
   @override
   _DiaryInteractState createState() => _DiaryInteractState();
@@ -40,6 +56,15 @@ class _DiaryInteractState extends State<DiaryInteract> {
     setState(() {
       likeCount = newFeedLiked.likeCount ?? 0;
     });
+  }
+
+  void goToCommentPage() {
+    // Code chuyển hướng đến trang comment ở đây
+    // Ví dụ:
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CommentPage(postId: widget.postId, avatar: widget.avatar,comments: widget.comments, name: widget.name, time: widget.time, status: widget.status, likeCount: widget.likeCount, shareCount: widget.shareCount,imageUrls: widget.imageUrls,)),
+    );
   }
 
   @override
@@ -68,9 +93,12 @@ class _DiaryInteractState extends State<DiaryInteract> {
           ),
           Row(
             children: [
-              const ImageIcon(
-                AssetImage('assets/images/Subtract.png'),
-                color: Color(0xff707070),
+              InkWell(
+                onTap: () => goToCommentPage(), // Gọi hàm khi nhấn vào biểu tượng comment
+                child: ImageIcon(
+                  AssetImage('assets/images/Subtract.png'),
+                  color: Color(0xff707070),
+                ),
               ),
               Text(
                 widget.commentCount.toString(),

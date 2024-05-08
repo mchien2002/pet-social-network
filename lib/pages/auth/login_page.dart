@@ -23,12 +23,12 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    final userJson = storage.getItem("userInfo");
-    if (userJson != null) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const SplashPage();
-      }));
-    }
+    // final userJson = storage.getItem("userInfo");
+    // if (userJson != null) {
+    //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //     return const SplashPage();
+    //   }));
+    // }
     _controllerUsername = TextEditingController();
     _controllerPassword = TextEditingController();
     super.initState();
@@ -37,9 +37,9 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> loginButton() async {
     try {
       if (_controllerPassword.text.isNotEmpty &&
-          _controllerPassword.text.isNotEmpty) {
+          _controllerUsername.text.isNotEmpty) {
         final userLogin = await _service.loginAPI(
-            "minhchien2002","mchien2002");
+            _controllerUsername.text, _controllerPassword.text);
         storage.setItem('userInfo', userLogin.toJson());
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return const SplashPage();

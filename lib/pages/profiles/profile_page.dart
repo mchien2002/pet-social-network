@@ -124,7 +124,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           userInfo.fullname!,
                           style: const TextStyle(
-                            fontSize: 30,
+                            fontSize: 16,
                           ),
                         ),
                         Row(
